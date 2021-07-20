@@ -1,11 +1,20 @@
 footer {
     margin: 30px 0 0 0;
-    border: 2px solid $footer;
+    @include tablette {
+        margin: 50px 0 0 0;
+    }
+    @include pc {
+        margin: 50px 0 0 0;
+    }
+    @include pc-xl {
+        margin: 145px 0 0 0;
+    }
     background-color: $footer;
     color: $secondary-font-color;
     & a {
+        margin: 5px 0;
         text-align: center;
-        color: $thirdary-font-color;
+        color: $secondary-font-color;
         @include pc {
             font-size: 115%;
         }
@@ -15,6 +24,9 @@ footer {
     }
     & #copyright {
         font-size: 1.2rem;
-        color: $thirdary-font-color;
+        color: $secondary-font-color;
+    }
+    & .container {
+        padding: 35px;
     }
 }

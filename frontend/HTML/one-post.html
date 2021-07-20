@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-    <title>GROUPOMANIA - Posts</title>
+    <title>GROUPOMANIA - Post</title>
 </head>
 
 <body class="body">
@@ -40,20 +40,11 @@
         </nav>
     </header>
 
-    <!--Page contenant tous les posts créés-->
     <section class=" text-center">
-        <div>
-            <!-- <button type="submit" id="sendForm" class="btn m-auto col-10 col-md-6 col-lg-4 col-xl-3">Créez un nouveau post</button> -->
-            <a href="../HTML/form-post.html" class="btn btn-del m-auto col-10 col-md-6 col-lg-4 col-xl-3">Créez un
-                nouveau
-                post</a>
-
-        </div>
+        <!--Récupération du post sélectionné dans all-posts.html-->
         <article>
-            <!-- <a href="${postId}"> -->
             <div class="posts">
-                <!-- Titre à récupérer sur BDD -->
-                <h2>${Titre du Post1}</h2>
+                <h2>${Titre du Post}</h2>
                 <div class="post-field">
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed cursus tortor porta, gravida libero sit amet, facilisis turpis. Maecenas ac mi facilisis, volutpat tortor non, viverra nibh. Pellentesque sed urna non tellus maximus dapibus.
                         Vivamus nulla ex, tincidunt non posuere ut, luctus vitae libero.
@@ -61,41 +52,48 @@
                     <img src="../images/logo.png" alt="Logo GROUPOMANIA" title="Logo GROUPOMANIA" aria-label="Logo GROUPOMANIA" />
                 </div>
                 <div class="post-infos">
-                    <!-- Pseudo auteur post dans BDD -->
                     <p>De : ${Pseudo Auteur}</p>
-                    <!-- Date création post dans BDD -->
                     <p>Le : ${Date création}</p>
                 </div>
-                <div class="mb-3">
-                    <!-- <button type="submit" id="sendForm" class="btn m-auto col-10 col-md-6 col-lg-4 col-xl-3">Commenter / Lire commentaires</button> -->
-                    <a href="one-post.html" class="btn m-auto col-10 col-md-6 col-lg-4 col-xl-3">Commenter / Lire
-                        commentaires</a>
-                    <!-- <button type="submit" id="sendForm" class="btn m-auto col-10 col-md-6 col-lg-4 col-xl-3">Commenter / Lire commentaires</button> -->
-                </div>
-            </div>
-            <!-- </a> -->
-        </article>
-        <article>
-            <div class="posts">
-                <!-- Titre à récupérer sur BDD -->
-                <h2>${Titre du Post2}</h2>
-                <div class="post-field">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed cursus tortor porta, gravida libero sit amet, facilisis turpis. Maecenas ac mi facilisis, volutpat tortor non, viverra nibh. Pellentesque sed urna non tellus maximus dapibus.
-                        Vivamus nulla ex, tincidunt non posuere ut, luctus vitae libero.
-                    </p>
-                    <img src="../images/logo-1.png" alt="Logo GROUPOMANIA" title="Logo GROUPOMANIA" aria-label="Logo GROUPOMANIA" />
-                </div>
-                <div class="post-infos">
-                    <!-- Pseudo auteur post dans BDD -->
-                    <p>De : ${Pseudo Auteur}</p>
-                    <!-- Date création post dans BDD -->
-                    <p>Le : ${Date création}</p>
-                </div>
-                <div class="mb-3">
-                    <!-- <button type="submit" id="sendForm" class="btn m-auto col-10 col-md-6 col-lg-4 col-xl-3">Commenter / Lire commentaires</button> -->
-                    <a href="one-post.html" class="btn m-auto col-10 col-md-6 col-lg-4 col-xl-3">Commenter / Lire
-                        commentaires</a>
-                </div>
+                <!-- CREATION BOUTON DONNANT POSSIBILITÉ DE CRÉER UN COMMENTAIRE -->
+                <!-- <button type="submit" id="sendForm" class="btn m-auto col-10 col-md-6 col-lg-4 col-xl-3">Donnez votre
+                    avis</button> -->
+                <a href="../HTML/form-comment.html" class="btn m-auto col-10 col-md-6 col-lg-4 col-xl-3">Donnez votre
+                    avis</a>
+                <!--Création/Insertion commentaires sur ce post-->
+                <article>
+                    <div class="comments">
+                        <!-- Titre à récupérer sur BDD -->
+                        <h2>${Titre du Commentaire1}</h2>
+                        <div class="post-field">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus dictum condimentum nunc. Aenean malesuada imperdiet porttitor. Vivamus non nec.</p>
+                            <img src="../images/logo-1.png" alt="Logo GROUPOMANIA" title="Logo GROUPOMANIA" aria-label="Logo GROUPOMANIA" />
+                        </div>
+                        <div class="post-infos">
+                            <!-- Pseudo auteur post dans BDD -->
+                            <p>De : ${Pseudo Commentateur}</p>
+                            <!-- Date création post dans BDD -->
+                            <p>Le : ${Date création}</p>
+                        </div>
+                    </div>
+                </article>
+                <!--Création/Insertion commentaires sur ce post-->
+                <article>
+                    <div class="comments">
+                        <!-- Titre à récupérer sur BDD -->
+                        <h2>${Titre du Commentaire2}</h2>
+                        <div class="post-field">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus dictum condimentum nunc. Aenean malesuada imperdiet porttitor. Vivamus non nec.</p>
+                            <img src="../images/logo-1.png" alt="Logo GROUPOMANIA" title="Logo GROUPOMANIA" aria-label="Logo GROUPOMANIA" />
+                        </div>
+                        <div class="post-infos">
+                            <!-- Pseudo auteur post dans BDD -->
+                            <p>De : ${Pseudo Commentateur}</p>
+                            <!-- Date création post dans BDD -->
+                            <p>Le : ${Date création}</p>
+                        </div>
+                    </div>
+                </article>
             </div>
         </article>
 

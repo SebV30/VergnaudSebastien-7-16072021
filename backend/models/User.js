@@ -17,7 +17,7 @@ function User(connectionSequelize) {
             unique: true
         },
         password: {
-            type: DataTypes.STRING(25),
+            type: DataTypes.STRING,
             allowNull: false
         },
         isAdmin: {

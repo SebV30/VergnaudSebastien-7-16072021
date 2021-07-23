@@ -30,8 +30,8 @@ db.Post.hasMany(db.Comment);
 db.Comment.belongsTo(db.Post);
 
 
-(async() => {
-    await sequelize.sync({ force: true });
-})();
+// (async() => {
+//     await sequelize.sync({ force: true });
+// })();
 
 module.exports = db;

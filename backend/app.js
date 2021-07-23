@@ -6,15 +6,8 @@ const rateLimit = require('express-rate-limit');
 const dotenv = require('dotenv');
 dotenv.config();
 
-const { Sequelize, DataTypes, Model } = require('sequelize');
-const sequelize = new Sequelize('groupomania', process.env.DB_USER, process.env.DB_PASSWORD, {
-    host: 'localhost',
-    dialect: 'mysql'
-});
+const userRoutes = require('./routes/user');
 
-sequelize.authenticate()
-    .then(() => console.log('Connection to the database has been established succesfully.'))
-    .catch(error => console.error('Unable to connect do the database', error));
 
 
 const app = express();
@@ -39,8 +32,8 @@ const limiter = rateLimit({
 app.use('/images', express.static(path.join(__dirname, 'images')));
 
 
-// app.use('/api/...', ...Routes); //Inscription
-// app.use('/api/...', ...Routes); //Connexion
+app.use('/api/user', userRoutes); //Inscription
+app.use('/api/user', userRoutes); //Connexion
 // app.use('/api/...', ...Routes); //Posts
 // app.use('/api/...', ...Routes); //Commentaires
 // app.use('/api/...', ...Routes); //Profil

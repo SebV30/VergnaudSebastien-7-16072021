@@ -11,7 +11,7 @@ function User(connectionSequelize) {
             allowNull: false,
             unique: true
         },
-        userName: {
+        username: {
             type: DataTypes.STRING(50),
             allowNull: false,
             unique: true
@@ -20,7 +20,7 @@ function User(connectionSequelize) {
             type: DataTypes.STRING,
             allowNull: false
         },
-        isAdmin: {
+        isadmin: {
             type: DataTypes.BOOLEAN,
             defaultValue: false,
             allowNull: false

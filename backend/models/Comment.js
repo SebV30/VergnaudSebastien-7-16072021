@@ -13,10 +13,10 @@ function Comment(connectionSequelize) {
             allowNull: false,
             unique: true
         },
-        imageUrl: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
+        // imageUrl: {
+        //     type: DataTypes.STRING,
+        //     allowNull: false,
+        // },
         created: {
             type: DataTypes.DATE,
             allowNull: false,

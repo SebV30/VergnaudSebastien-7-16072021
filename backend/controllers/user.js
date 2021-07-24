@@ -10,9 +10,9 @@ exports.signup = (req, res, next) => {
         .then(hash => {
             models.User.create({
                     email: req.body.email,
-                    userName: req.body.userName,
+                    username: req.body.username,
                     password: hash,
-                    isAdmin: 0
+                    isadmin: false
                 })
                 .then(() => res.status(201).json({ message: 'Utilisateur créé' }))
                 .catch(error => res.status(400).json({ error }));
@@ -21,7 +21,7 @@ exports.signup = (req, res, next) => {
 };
 
 
-// CONNEXION D'UTILISATEUR DEJA INSCRIT
+// CONNEXION D'UN UTILISATEUR DEJA INSCRIT
 exports.login = (req, res, next) => {
     models.User.findOne({ where: { email: req.body.email, } })
         .then(user => {
@@ -47,25 +47,28 @@ exports.login = (req, res, next) => {
 
 // SUPPRIMER SON COMPTE UTILISATEUR
 exports.deleteUser = (req, res, next) => {
-    models.User.destroy({ where: { userId: req.params.id } })
+    models.User.destroy({ where: { id: req.params.id } })
         .then(() => res.status(201).json({ message: 'Utilisateur supprimé' }))
         .catch(error => res.status(400).json({ error }));
 };
 
 // MODIFICATION DE SON PROFIL UTILISATEUR
 exports.updateUser = (req, res, next) => {
-    models.user.update({
-            email: req.body.email,
-            userName: req.body.userName,
-            //password:
-        }, { where: { id: req.params.id } })
-        .then(() => res.status(201).json({ message: 'Utilisateur modifié' }))
-        .catch(error => res.status(400).json({ error }));
+    bcrypt.hash(req.body.password, 10)
+        .then(hash => {
+            models.User.update({
+                    email: req.body.email,
+                    username: req.body.username,
+                    password: hash,
+                }, { where: { id: req.params.id } })
+                .then(() => res.status(201).json({ message: 'Utilisateur modifié' }))
+                .catch(error => res.status(400).json({ error }));
+        })
 };
 
 // TROUVER UN UTILISATEUR PRECIS
 exports.getOneUser = (req, res, next) => {
-    models.user.findOne({ where: { userId: req.params.id } })
-        .then(() => res.status(201).json({ message: 'Utilisateur sélectionné' }))
+    models.User.findOne({ where: { id: req.params.id } })
+        .then((User) => res.status(200).json(User))
         .catch(error => res.status(400).json({ error }))
 };

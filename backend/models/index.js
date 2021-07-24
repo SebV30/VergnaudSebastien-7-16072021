@@ -29,7 +29,6 @@ db.Comment.belongsTo(db.User);
 db.Post.hasMany(db.Comment);
 db.Comment.belongsTo(db.Post);
 
-
 // (async() => {
 //     await sequelize.sync({ force: true });
 // })();

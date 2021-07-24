@@ -32,11 +32,9 @@ const limiter = rateLimit({
 app.use('/images', express.static(path.join(__dirname, 'images')));
 
 
-app.use('/api/user', userRoutes); //Inscription
-app.use('/api/user', userRoutes); //Connexion
+app.use('/api/user', userRoutes); //Inscription + connexion + modif profil + suppr compte
 // app.use('/api/...', ...Routes); //Posts
 // app.use('/api/...', ...Routes); //Commentaires
-// app.use('/api/...', ...Routes); //Profil
 // app.use('/api/...', ...Routes); //Déconnexion
 
 

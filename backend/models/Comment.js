@@ -4,19 +4,10 @@ const { Sequelize, DataTypes } = require('sequelize');
 function Comment(connectionSequelize) {
     return connectionSequelize.define('Comment', {
         // CREATION ID INUTILE => FAIT AUTOMATIQUEMENT PAR SEQUELIZE
-        title: {
-            type: DataTypes.STRING(80),
-            allowNull: false,
-        },
         content: {
             type: DataTypes.STRING(50),
             allowNull: false,
-            unique: true
         },
-        // imageUrl: {
-        //     type: DataTypes.STRING,
-        //     allowNull: false,
-        // },
         created: {
             type: DataTypes.DATE,
             allowNull: false,

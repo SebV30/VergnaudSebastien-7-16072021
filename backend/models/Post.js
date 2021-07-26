@@ -10,11 +10,11 @@ function Post(connectionSequelize) {
         },
         content: {
             type: DataTypes.TEXT,
-            allowNull: false,
+            allowNull: true,
         },
-        imageUrl: {
+        image: {
             type: DataTypes.STRING,
-            allowNull: false,
+            allowNull: true,
         },
         created: {
             type: DataTypes.DATE,

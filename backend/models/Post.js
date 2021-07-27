@@ -16,16 +16,16 @@ function Post(connectionSequelize) {
             type: DataTypes.STRING,
             allowNull: true,
         },
-        created: {
-            type: DataTypes.DATE,
-            allowNull: false,
-            defaultValue: Sequelize.NOW
-        },
-        modified: {
-            type: DataTypes.DATE,
-            allowNull: false,
-            defaultValue: Sequelize.NOW
-        },
+        // created: {
+        //     type: DataTypes.DATE,
+        //     allowNull: false,
+        //     defaultValue: Sequelize.NOW
+        // },
+        // modified: {
+        //     type: DataTypes.DATE,
+        //     allowNull: false,
+        //     defaultValue: Sequelize.NOW
+        // },
     });
 };
 

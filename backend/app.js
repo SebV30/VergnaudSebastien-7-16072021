@@ -8,7 +8,7 @@ dotenv.config();
 
 const userRoutes = require('./routes/user');
 const postRoutes = require('./routes/post');
-// const commentRoutes = require('./routes/comment');
+const commentRoutes = require('./routes/comment');
 
 
 
@@ -36,7 +36,7 @@ app.use('/images', express.static(path.join(__dirname, 'images')));
 
 app.use('/api/user', userRoutes); //Inscription + connexion + modif profil + suppr compte
 app.use('/api/post', postRoutes); //Posts
-// app.use('/api/...', ...Routes); //Commentaires
+app.use('/api/comment', commentRoutes); //Commentaires
 // app.use('/api/...', ...Routes); //Déconnexion
 
 

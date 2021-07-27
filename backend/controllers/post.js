@@ -61,10 +61,11 @@ exports.deletePost = (req, res, next) => {
 
 // ACCES A TOUS LES POSTS
 exports.getAllPost = (req, res, next) => {
-
     models.Post.findAll({
-            order: sequelize.literal('(createdAt) DESC'),
-            include: [{ model: User }]
+            order: [
+                ['createdAt', 'DESC']
+            ],
+            include: [{ model: models.User }]
         })
         .then((posts) => res.status(200).json(posts))
         .catch(error => res.status(400).json({ error }));
@@ -72,8 +73,7 @@ exports.getAllPost = (req, res, next) => {
 
 // ACCES A UN POST PRECIS
 exports.getOnePost = (req, res, next) => {
-
-    models.Post.findOne({ where: { id: req.params.id }, include: [{ model: index.User }] })
-        .then((Post) => res.status(200).json(Post))
+    models.Post.findOne({ where: { id: req.params.id }, include: [{ model: models.User }] })
+        .then((post) => res.status(200).json(post))
         .catch(error => res.status(400).json({ error }))
 };

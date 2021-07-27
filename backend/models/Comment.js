@@ -8,16 +8,6 @@ function Comment(connectionSequelize) {
             type: DataTypes.STRING(50),
             allowNull: false,
         },
-        created: {
-            type: DataTypes.DATE,
-            allowNull: false,
-            defaultValue: Sequelize.NOW
-        },
-        modified: {
-            type: DataTypes.DATE,
-            allowNull: false,
-            defaultValue: Sequelize.NOW
-        },
     });
 };
 

@@ -1,13 +1,19 @@
 const { Sequelize } = require('sequelize');
 const models = require('../models/index');
 const fs = require('fs');
+const jwt = require('jsonwebtoken');
 
 // CREATION D'UN POST 
 exports.createPost = (req, res, next) => {
+    // const token = req.headers.authorization.split(' ')[1];
+    // const decodedToken = jwt.verify(token, process.env.TOKEN);
+    // const userId = decodedToken.userId;
+
     models.Post.create({
             title: req.body.title,
             content: req.body.content,
             image: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`,
+            // UserId: userId,
             UserId: req.body.UserId
         })
         .then(() => res.status(201).json({ message: 'Post créé' }))
@@ -38,7 +44,7 @@ exports.updatePost = (req, res, next) => {
         models.Post.update({
                 title: req.body.title,
                 content: req.body.content,
-                image: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`,
+                // image: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`,
             }, { where: { id: req.params.id } })
             .then(() => res.status(200).json({ message: "Votre post a bien été modifié." }))
             .catch(error => res.status(400).json({ message: "Modification du post impossible" + error }))

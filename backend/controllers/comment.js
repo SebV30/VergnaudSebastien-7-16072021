@@ -41,12 +41,12 @@ exports.deleteComment = (req, res, next) => {
 
 //ACCES A UN COMMENTAIRE PRECIS
 exports.getOneComment = (req, res, next) => {
-        models.Comment.findOne({ where: { id: req.params.id }, include: [{ model: models.User }, { model: models.Post }] })
-            .then((comment) => res.status(200).json(comment))
-            .catch(error => res.status(400).json({ error }))
+    models.Comment.findOne({ where: { id: req.params.id }, include: [{ model: models.User }, { model: models.Post }] })
+        .then((comment) => res.status(200).json(comment))
+        .catch(error => res.status(400).json({ error }))
 
-    }
-    //ACCES A TOUS LES COMMENTAIRES D'UN POST PRECIS
+};
+//ACCES A TOUS LES COMMENTAIRES D'UN POST PRECIS
 exports.getAllCommentFromOnePost = (req, res, next) => {
     models.Comment.findAll({
             order: [

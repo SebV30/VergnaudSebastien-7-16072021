@@ -1,13 +1,16 @@
 <template>
-  <div id="app">
-    <!-- <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>-->
-   
-  
+  <div>
+    <!-- <div id="nav">
+      <router-link to="/">Home</router-link> |
+      <router-link to="/about">About</router-link>
+
+    </div>
+    <router-view/> -->
+
     <header>
         <h1 class="text-center">Bienvenue sur notre Réseau Social d'Entreprise</h1>
         <nav class="navbar navbar-expand-md navbar-light d-flex justify-content-between">
-            <img src="../images/logo-1.png" alt="Logo GROUPOMANIA" title="Logo GROUPOMANIA" aria-label="Logo GROUPOMANIA" />
+            <img src="./assets/logo-1.png" alt="Logo GROUPOMANIA" title="Logo GROUPOMANIA" aria-label="Logo GROUPOMANIA" />
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -28,9 +31,7 @@
         </nav>
     </header>
 
-<section>
-  <InscriptionPage/>
-</section>
+    <Login/>
 
     <footer>
         <div class="container mt-4">
@@ -40,7 +41,7 @@
                         <a href="#">Conditions Générales d'Utilisation</a>
                     </div>
                     <div class="col-sm">
-                        <a href="mailto:contact-hotline@groupomania.fr">Nous contacter</a>
+                        <a href="mailto:contact@groupomania.fr">Nous contacter</a>
                     </div>
                 </div>
                 <div class="social text-center m-auto">
@@ -59,30 +60,45 @@
             <p id="copyright" class="text-center mt-4">© GROUPOMANIA 2021</p>
         </div>
     </footer>
-</div>
 
+
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-import InscriptionPage from './components/HelloWorld.vue'
+import Login from './views/Login.vue'
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
+    Login, 
   }
 }
+
 </script>
 
-<style lang="scss">
+
+
+
+<style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 
+#nav {
+  padding: 30px;
+}
+
+#nav a {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+#nav a.router-link-exact-active {
+  color: #42b983;
+}
 </style>

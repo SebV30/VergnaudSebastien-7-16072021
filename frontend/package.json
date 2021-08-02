@@ -10,6 +10,7 @@
     "sass:watch": "sass --watch ./src/sass/main.scss:./public/css/style.css"
   },
   "dependencies": {
+    "axios": "^0.21.1",
     "core-js": "^3.6.5",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0"

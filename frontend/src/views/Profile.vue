@@ -31,6 +31,6 @@
 
 <script>
 export default {
-  name: 'User-profile'
+  name: 'Profile'
 }
 </script>

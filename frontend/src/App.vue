@@ -31,7 +31,7 @@
         </nav>
     </header>
 
-    <Login/>
+    <router-view/>
 
     <footer>
         <div class="container mt-4">
@@ -66,19 +66,16 @@
 </template>
 
 <script>
-import Login from './views/Login.vue'
+// import Login from './views/Login.vue'
 
 export default {
   name: "App",
   components: {
-    Login, 
+    // Login, 
   }
 }
 
 </script>
-
-
-
 
 <style>
 #app {

@@ -17,11 +17,12 @@
                         <!-- <a class="nav-link font-weight-bold" href="../HTML/all-posts.html">Accès aux POSTS</a> -->
                     </li>
                     <li class="nav-item active">
-                        <router-link to="/profile" id="sendForm" class="btn m-auto col-10 col-md-6 col-lg-4 col-xl-3">Profil</router-link>
+                        <router-link :to="`/profile/${userID}`" id="sendForm" class="btn m-auto col-10 col-md-6 col-lg-4 col-xl-3">Profil</router-link>
                         <!-- <a class="nav-link" href="../HTML/edit-profile.html">Profil</a> -->
                     </li>
                     <li class="nav-item active">
-                        <router-link to="/login" id="sendForm" class="btn m-auto col-10 col-md-6 col-lg-4 col-xl-3" @click="logOut">Déconnexion</router-link>
+                      <button id="sendForm" class="btn m-auto col-10 col-md-6 col-lg-4 col-xl-3" @click="logOut()">Déconnexion</button>
+                        <!-- <router-link to="/login" id="sendForm" class="btn m-auto col-10 col-md-6 col-lg-4 col-xl-3" @click="logOut()">Déconnexion</router-link> -->
                         <!-- <a class="nav-link" href="../HTML/disconnect.html">Déconnexion</a> -->
                     </li>
                 </ul>
@@ -65,16 +66,23 @@
 
 <script>
 // import Login from './views/Login.vue'
+import VueJwtDecode from 'vue-jwt-decode';
+
 
 export default {
   name: "App",
   components: {
     // Login, 
   },
+  data() {
+    return {
+      userID: VueJwtDecode.decode(localStorage.getItem('token')).userId,
+    }
+  },
   methods: {
-    logOut () {
+    logOut() {
       localStorage.clear();
-      this.$router.push("/")
+      this.$router.push("/login");
     }
   }
 }

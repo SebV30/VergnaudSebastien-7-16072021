@@ -1,7 +1,7 @@
 <template>
       <section class=" text-center">
-        <div class="createPost">
-            <button type="submit" class="btn btn-del m-auto col-10 col-md-6 col-lg-4 col-xl-3" @click="showForm">Créez un nouveau post</button>
+        <div class="createPost d-flex-column justify-content-around">
+            <button type="submit" class="btn btn-del m-auto col-10 col-md-4 col-lg-4 col-xl-3" @click="showForm">Créez un nouveau post</button>
                 <div class="text-center" v-if="loadForm">
                   <div class="form-group col-11 m-auto font-weight-bold">
                       <label for="titre">Titre du POST :</label>
@@ -12,10 +12,11 @@
                     <textarea class="form-control" id="message" rows="4" Name="message" v-model="content"></textarea>
                   </div>
                   <br class="form-group m-auto">
-                  <input class="mt-4 mb-3 mr-3 col-12 col-md-6 justify-content-center" type="file" v-on:change="selectedFile" ref="image">
+                  <input id="image" type="file" class="mt-4 mb-3 mr-3 col-12 col-md-6 justify-content-center" v-on:change="selectedFile" ref="file">
                   <!-- <button class="btn m-auto">Ajouter une image</button><br> -->
-                <button class="btn btn-del mb-3" @click="sendPost">ENVOYER</button>
+                <button class="btn btn-del mb-3" type="submit" @click="sendPost()">ENVOYER</button>
                 </div>
+
 
         </div>
         <article>
@@ -30,12 +31,10 @@
                     <!-- Pseudo auteur post dans BDD -->
                     <p>De : {{ post.username }}</p>
                     <!-- Date création post dans BDD -->
-                    <p>Le : {{ post.createdAt }}</p>
+                    <p>Le : {{ post.createdAt | formatDate }}</p>
                 </div>
                 <div class="mb-3">
-                    <button type="submit" id="sendForm" class="btn m-auto col-10 col-md-6 col-lg-4 col-xl-3">Commenter / Lire commentaires</button>
-                    <!-- <a href="one-post.html" class="btn m-auto col-10 col-md-6 col-lg-4 col-xl-3">Commenter / Lire
-                        commentaires</a> -->
+                    <router-link :to="`/posts/${post.id}`" class="btn m-auto col-10 col-md-6 col-lg-4 col-xl-3">Commenter / Lire commentaires</router-link>
                 </div>
             </div>
         </article>
@@ -44,7 +43,10 @@
 </template>
 
 <script>
+// import Uplaoding from '../components/Uploading-image.vue';
 import axios from 'axios';
+import VueJwtDecode from 'vue-jwt-decode';
+
 export default {
   name: 'Posts',
   data () {
@@ -52,57 +54,60 @@ export default {
       loadForm: false,
       title: '',
       content: '',
-      image: '',
+      file: '',
       Posts: []
     }
   },
-      mounted() {
-      this.getAllPosts();
-    },
+  mounted() {
+  this.getAllPosts();
+  },
   methods: {
     showForm () {
       this.loadForm = true
     },
+    selectedFile() {
+      this.file = this.$refs.file.files[0];
+    },
     sendPost () {
       //Récupération du token stocké dans le LS
       const token = localStorage.getItem('token');
-      console.log(token);
+      const UserId = VueJwtDecode.decode(localStorage.getItem('token')).userId;
+      const title = document.getElementById('titre').value;
+      const content = document.getElementById('message').value;
+      const formData = new FormData();
+      formData.append('image', this.file);
+      formData.append('title', title);
+      formData.append('content', content);
+      formData.append('UserId', UserId);
+
+      axios
+        .post('http://localhost:3000/api/post/', formData, {
+          headers: {
+            Authorization: "bearer " + token,
+          },
+        })
+        .then(res => {
+          if(res){
+            window.location.reload();
+          }
+        })
+        .catch((error) => {console.log(error);})
+    },
+
+    getAllPosts() {
+      //Récupération du token stocké dans le LS
+      const token = localStorage.getItem('token');
 
       //Méthode AXIOS pour récupérer tous les posts présents dans la table de la BDD
       axios
-      .post('http://localhost:3000/api/post/', {
-        headers: {
-        Authorization: "bearer " + token,
-        },
-        title: this.title,
-        content: this.content,
-        image: this.image
-      })
-      .then(response => {
-        console.log(response);
-        this.title = response.data.title,
-        this.content = response.data.content,
-        this.image = response.data.image
-      })
+        .get('http://localhost:3000/api/post/', {
+          headers: {
+            Authorization: "bearer " + token,
+          },
+        })
+      .then(response => {this.Posts = response.data})
       .catch((error) => {console.log(error);});
-    },
-
-    // getAllPosts() {
-    //   //Récupération du token stocké dans le LS
-    //   const token = localStorage.getItem('token');
-    //   console.log(token);
-
-    //   //Méthode AXIOS pour récupérer tous les posts présents dans la table de la BDD
-    //   axios
-    //     .get('http://localhost:3000/api/post/', {
-    //       headers: {
-    //         Authorization: "bearer " + token,
-    //       },
-    //     })
-    //   .then(response => {this.Posts = response.data;
-    //   console.log(response);})
-    //   .catch((error) => {console.log(error);});
-    // }
+    }
   }
 }
 </script>

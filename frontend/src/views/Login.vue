@@ -53,7 +53,6 @@ export default {
       localStorage.setItem('token', this.monToken)},this.$router.push("Posts")
       )
       .catch((error) => {console.error(error);});
-
     }
   }
 }

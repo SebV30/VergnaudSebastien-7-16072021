@@ -48,10 +48,11 @@ export default {
         email: this.email,
         password: this.password
       })
-      .then(response => 
-      {this.monToken = response.data.token
-      localStorage.setItem('token', this.monToken)},this.$router.push("Posts")
-      )
+      .then(response => {
+        this.monToken = response.data.token
+        localStorage.setItem('token', this.monToken);
+        this.$router.push("Posts");
+      })
       .catch((error) => {console.error(error);});
     }
   }

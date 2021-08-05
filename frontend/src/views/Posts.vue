@@ -29,7 +29,7 @@
                 </div>
                 <div class="post-infos">
                     <!-- Pseudo auteur post dans BDD -->
-                    <p>De : {{ post.username }}</p>
+                    <p>De : {{ post.User.username }}</p>
                     <!-- Date création post dans BDD -->
                     <p>Le : {{ post.createdAt | formatDate }}</p>
                 </div>

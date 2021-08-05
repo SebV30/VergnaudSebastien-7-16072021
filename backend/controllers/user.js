@@ -36,7 +36,9 @@ exports.login = (req, res, next) => {
                     res.status(200).json({
                         userId: user.id,
                         isAdmin: user.isadmin,
-                        token: jwt.sign({ userId: user.id, isAdmin: user.isadmin },
+                        username: user.username,
+                        password: user.password,
+                        token: jwt.sign({ userId: user.id, isAdmin: user.isadmin, username: user.username, password: user.password, },
                             process.env.TOKEN, { expiresIn: '24h' }
                         )
                     });
@@ -58,7 +60,7 @@ exports.updateUser = (req, res, next) => {
     bcrypt.hash(req.body.password, 10)
         .then(hash => {
             models.User.update({
-                    email: req.body.email,
+                    // email: req.body.email,
                     username: req.body.username,
                     password: hash,
                 }, { where: { id: req.params.id } })

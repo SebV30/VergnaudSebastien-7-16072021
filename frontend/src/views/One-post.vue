@@ -2,7 +2,6 @@
     <main class=" text-center">
         <!--Récupération du post sélectionné dans all-posts.html-->
         <section>
-          <!-- <div v-for="(post,catchDb) in Posts" :key="catchDb" :id="post.id"> -->
             <div class="posts">
                 <h2>{{ postTitle }}</h2>
                 <div class="post-field">
@@ -13,30 +12,48 @@
                     <p>De : {{ postUsername }}</p>
                     <p>Le : {{ postCreatedAt | formatDate }}</p>
                 </div>
+                <button class="btn btn-del mb-3 mt-3 mr-4" type="submit" @click="showForm">Modifier</button>
+                <div class="text-center" v-if="loadForm">
+                  <div class="form-group col-11 m-auto font-weight-bold">
+                      <label for="titre">Titre du POST :</label>
+                      <input type="text" class="form-control" id="titre" Name="titre" v-model="title">
+                  </div>
+                  <div class="form-group col-11 m-auto font-weight-bold">
+                    <label for="message">Message :</label>
+                    <textarea class="form-control" id="message" rows="4" Name="message" v-model="content"></textarea>
+                  </div>
+                  <br class="form-group m-auto">
+                  <input id="image" type="file" class="mt-4 mb-3 mr-3 col-12 col-md-6 justify-content-center" v-on:change="selectedFile" ref="file">
+                  <!-- <button class="btn m-auto">Ajouter une image</button><br> -->
+                <button class="btn btn-del mb-3" type="submit" @click="updatePost()">ENVOYER</button>
+                </div>
+
+                <button class="btn btn-del mb-3 mt-3 ml-4" type="submit" @click="deletePost()">Supprimer</button><br>
                 <!-- CREATION INPUT & BOUTON DONNANT POSSIBILITÉ DE CRÉER UN COMMENTAIRE -->
-                <button type="submit" id="sendForm" class="btn m-auto col-10 col-md-6 col-lg-4 col-xl-3" @click="showForm">Donnez votre avis</button>
-                <div class="form-group col-11 m-auto font-weight-bold" v-if="loadForm">
+                <button type="submit" id="sendForm" class="btn m-auto col-9 col-md-6 col-lg-4 col-xl-3" @click="showFormComment">Donnez votre avis</button>
+                <div class="form-group col-11 m-auto font-weight-bold" v-if="loadFormComment">
                 <label for="message"></label>
-                <textarea class="form-control" id="message" rows="8" Name="message" v-model="content"></textarea>
+                <textarea class="form-control" id="message" rows="4" Name="message" v-model="contentComment"></textarea>
                 <button class="btn btn-del mb-3 mt-3" type="submit" @click="sendComment()">ENVOYER</button>
 
                 </div>
                 <!--CRÉATION/INSERTION COMMENTAIRES SUR CE POST-->
-                <article>
-                    <div class="comments" v-for="(comment,receiveDb) in Comments" :key="receiveDb" :id="comment.id">
-                        
-                        <h2>commentaire</h2>
+                <article >
+                  <div class="posts">
+                    <h2>commentaires</h2>
+                    <div class="comments commentId" v-for="(comment,receiveDb) in Comments" :key="receiveDb" :id="comment.id">
                         <div class="post-field">
                             <p>{{ comment.content }}</p>
                         </div>
                         <div class="post-infos">
-                            <p>De : {{ comment.username }}</p>
+                            <p>De : {{ comment.User.username }}</p>
                             <p>Le : {{ comment.createdAt | formatDate }}</p>
                         </div>
+                    <button class="btn btn-del mb-3 mt-3" type="submit" @click="deleteComment()">Supprimer</button>
                     </div>
+                  </div>
                 </article>
             </div>
-            <!-- </div> -->
         </section>
 
     </main>
@@ -51,13 +68,17 @@ export default {
   data () {
     return {
       loadForm: false,
+      loadFormComment: false,
       postTitle: '',
       postContent: '',
       postImage: '',
       postUsername: '',
       postCreatedAt: '',
       Comments: [],
+      contentComment: '',
+      title: '',
       content: '',
+      file: '',
     }
   },
   mounted() {
@@ -67,6 +88,9 @@ export default {
   methods: {
     showForm () {
       this.loadForm = true
+    },
+    showFormComment () {
+      this.loadFormComment = true
     },
 
     getOnePost() {
@@ -84,11 +108,59 @@ export default {
         this.postTitle = response.data.title;
         this.postContent = response.data.content;
         this.postImage = response.data.image;
-        // this.postUsername = response.data.users.username;
+        this.postUsername = response.data.User.username;
         this.postCreatedAt = response.data.createdAt;
         // console.log(this.postUsername);
       })
       .catch((error) => {console.log(error);});
+    },
+
+    selectedFile() {
+      this.file = this.$refs.file.files[0];
+    },
+
+    updatePost(){
+      const token = localStorage.getItem('token');
+      const UserId = VueJwtDecode.decode(localStorage.getItem('token')).userId;
+      const postId = this.$route.params.id;
+      const title = document.getElementById('titre').value;
+      const content = document.getElementById('message').value;
+      const formData = new FormData();
+      formData.append('image', this.file);
+      formData.append('title', title);
+      formData.append('content', content);
+      formData.append('UserId', UserId);
+
+      axios
+        .put('http://localhost:3000/api/post/' + postId, formData, {
+          headers: {
+            Authorization: "bearer " + token,
+          },
+        })
+        .then(res => {
+          if(res){
+            window.location.reload();
+          }
+        })
+        .catch((error) => {console.log(error);})
+    },
+
+    deletePost() {
+      const token = localStorage.getItem('token');
+      const postId = this.$route.params.id;
+
+      axios
+      .delete('http://localhost:3000/api/post/' + postId, {
+        headers: {
+            Authorization: "Bearer " + token,
+        }
+      })
+      .then(response => { 
+        if(response) {
+        this.$router.push("/");
+        }
+      })
+      .catch((error) => {console.log(error);})
     },
 
     sendComment() {
@@ -96,13 +168,13 @@ export default {
       const token = localStorage.getItem('token');
       const postId = this.$route.params.id;
       const content = document.getElementById('message').value;
-      const userId = VueJwtDecode.decode(localStorage.getItem('token')).userId;
-      const test = {
-        content, userId
+      const UserId = VueJwtDecode.decode(localStorage.getItem('token')).userId;
+      const backInfos = {
+        content, UserId
       }
 
       axios
-      .post('http://localhost:3000/api/post/' + postId + '/comment',test, {
+      .post('http://localhost:3000/api/post/' + postId + '/comment',backInfos, {
         headers: {
             "Content-Type" : "application/json",
             Authorization: "Bearer " + token,
@@ -110,10 +182,35 @@ export default {
       })
 
       .then(response => {
-        this.Comments = response.data;
-        window.location.reload()
+        if(response) {
+          window.location.reload()
+        }
       })
       .catch((error) => {console.log(error);})
+    },
+
+    deleteComment() {
+      const token = localStorage.getItem('token');
+      const infoCommentId = document.querySelector('.commentId');
+      const commentId = infoCommentId.getAttribute('id');
+
+      // const UserId = VueJwtDecode.decode(localStorage.getItem('token')).userId;
+      // const isAdmin = VueJwtDecode.decode(localStorage.getItem('token')).isAdmin;
+
+      // if(userId == UserId || isAdmin === 1) {
+      axios
+      .delete('http://localhost:3000/api/comment/' + commentId ,{
+        headers: {
+            Authorization: "Bearer " + token,
+        }
+      })
+      .then(response => { 
+        if(response) {
+        window.location.reload()
+        }
+      })
+      .catch((error) => {console.log(error);})
+      // }
     },
 
     getAllComments() {
@@ -139,3 +236,4 @@ export default {
       // console.log(isAdmin);
 
 </script>
+

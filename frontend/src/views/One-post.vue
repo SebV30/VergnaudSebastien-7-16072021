@@ -1,4 +1,6 @@
 <template>
+<div>
+  <Header />
     <main class=" text-center">
         <!--Récupération du post sélectionné dans all-posts.html-->
         <section>
@@ -12,7 +14,7 @@
                     <p>De : {{ postUsername }}</p>
                     <p>Le : {{ postCreatedAt | formatDate }}</p>
                 </div>
-                <button class="btn btn-del mb-3 mt-3 mr-4" type="submit" @click="showForm">Modifier</button>
+                <button v-if="UserId == postUserId || isAdmin == 1" class="btn btn-del mb-3 mt-3 mr-4" type="submit" @click="showForm">Modifier</button>
                 <div class="text-center" v-if="loadForm">
                   <div class="form-group col-11 m-auto font-weight-bold">
                       <label for="titre">Titre du POST :</label>
@@ -28,7 +30,7 @@
                 <button class="btn btn-del mb-3" type="submit" @click="updatePost()">ENVOYER</button>
                 </div>
 
-                <button class="btn btn-del mb-3 mt-3 ml-4" type="submit" @click="deletePost()">Supprimer</button><br>
+                <button v-if="UserId == postUserId || isAdmin == 1" class="btn btn-del mb-3 mt-3 ml-4" type="submit" @click="deletePost()">Supprimer</button><br>
                 <!-- CREATION INPUT & BOUTON DONNANT POSSIBILITÉ DE CRÉER UN COMMENTAIRE -->
                 <button type="submit" id="sendForm" class="btn m-auto col-9 col-md-6 col-lg-4 col-xl-3" @click="showFormComment">Donnez votre avis</button>
                 <div class="form-group col-11 m-auto font-weight-bold" v-if="loadFormComment">
@@ -49,7 +51,7 @@
                             <p>De : {{ comment.User.username }}</p>
                             <p>Le : {{ comment.createdAt | formatDate }}</p>
                         </div>
-                    <button class="btn btn-del mb-3 mt-3" type="submit" @click="deleteComment()">Supprimer</button>
+                    <button v-if="UserId == comment.UserId || isAdmin == 1" class="btn btn-del mb-3 mt-3" type="submit" @click="deleteComment()">Supprimer</button>
                     </div>
                   </div>
                 </article>
@@ -57,14 +59,19 @@
         </section>
 
     </main>
+    </div>
 </template>
 
 <script>
+import Header from '@/components/Header.vue'
 import axios from 'axios';
 import VueJwtDecode from 'vue-jwt-decode';
 
 export default {
   name: 'One-post',
+  components: {
+    Header,
+  },
   data () {
     return {
       loadForm: false,
@@ -73,12 +80,15 @@ export default {
       postContent: '',
       postImage: '',
       postUsername: '',
+      postUserId:'',
       postCreatedAt: '',
       Comments: [],
       contentComment: '',
       title: '',
       content: '',
       file: '',
+      UserId: VueJwtDecode.decode(localStorage.getItem('token')).userId,
+      isAdmin: VueJwtDecode.decode(localStorage.getItem('token')).isAdmin,
     }
   },
   mounted() {
@@ -109,8 +119,8 @@ export default {
         this.postContent = response.data.content;
         this.postImage = response.data.image;
         this.postUsername = response.data.User.username;
+        this.postUserId = response.data.UserId;
         this.postCreatedAt = response.data.createdAt;
-        // console.log(this.postUsername);
       })
       .catch((error) => {console.log(error);});
     },

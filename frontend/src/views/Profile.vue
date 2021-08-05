@@ -1,4 +1,6 @@
 <template>
+  <div>
+    <Header />
       <section class="text-center">
         <div class="d-flex justify-content-center">
             <div class="form-group col-11 col-md-8 col-lg-6 col-xl-4" > <!--:id="user.username"-->
@@ -16,20 +18,25 @@
         </div>
         <button type="submit" id="sendForm" class="btn m-auto col-10 col-md-8 col-lg-6 col-xl-4" @click="deleteAccount">Supprimer votre compte</button> <!--@click="deleteAccount"-->
     </section>
-
+</div>
 </template>
 
 <script>
+import Header from '@/components/Header.vue'
 import axios from 'axios';
 import VueJwtDecode from 'vue-jwt-decode';
 
 
 export default {
   name: 'Profile',
+  components: {
+    Header,
+  },
   data() {
     return {
       username: '',
       password: '',
+      UserId: VueJwtDecode.decode(localStorage.getItem('token')).userId,
     }
   },
   methods: {
@@ -74,8 +81,7 @@ export default {
       })
       .then(() => {
         localStorage.clear();
-        this.$router.push('Login')
-
+        this.$router.push('./Login.vue')
       })
       .catch((error) => {console.log(error);});
       

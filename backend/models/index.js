@@ -22,21 +22,21 @@ db.Comment = Comment(sequelize)
 
 
 //-----------ASSOCIATIONS---------------
-db.User.hasMany(db.Post, {
+db.User.hasMany(db.Post);
+db.Post.belongsTo(db.User, {
     onDelete: 'CASCADE',
     onUpdate: 'CASCADE'
 });
-db.Post.belongsTo(db.User);
-db.User.hasMany(db.Comment, {
+db.User.hasMany(db.Comment);
+db.Comment.belongsTo(db.User, {
     onDelete: 'CASCADE',
     onUpdate: 'CASCADE'
 });
-db.Comment.belongsTo(db.User);
-db.Post.hasMany(db.Comment, {
+db.Post.hasMany(db.Comment);
+db.Comment.belongsTo(db.Post, {
     onDelete: 'CASCADE',
     onUpdate: 'CASCADE'
 });
-db.Comment.belongsTo(db.Post);
 
 // (async() => {
 //     await sequelize.sync({ force: true });

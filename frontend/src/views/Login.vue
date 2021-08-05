@@ -22,7 +22,6 @@
         <article>
             <h2>Veuillez vous inscrire si ce n'est pas déjà fait.</h2>
             <router-link to="/signup" id="sendForm" class="btn m-auto col-10 col-md-6 col-lg-4 col-xl-3">S'Inscrire</router-link>
-            <!-- <a href="signup.html" class="btn m-auto col-10 col-md-6 col-lg-4 col-xl-3">S'Inscrire</a> -->
         </article>
     </section>
 

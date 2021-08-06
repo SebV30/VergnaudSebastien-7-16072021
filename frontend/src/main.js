@@ -2,6 +2,10 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import moment from 'moment';
+import Vuelidate from 'vuelidate';
+
+
+Vue.use(Vuelidate)
 
 Vue.filter('formatDate', function(value) {
     if (value) {

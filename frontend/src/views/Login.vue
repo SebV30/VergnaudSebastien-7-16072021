@@ -6,14 +6,14 @@
                 <div class="form-group col-11 col-md-8 col-lg-6 col-xl-4">
                     <label for="inputEmail4">Email :</label>
                     <input type="email" class="form-control text-center" id="inputEmail4" placeholder="dupont.martin@servicemail.com" required v-model="email">
-                    <div class="verif-input verif-input-email"></div>
+                    <!-- <div class="verif-input verif-input-email">ATTENTION : E-mail non valide</div> -->
                 </div>
             </div>
             <div class="d-flex justify-content-center">
                 <div class="form-group col-11 col-md-8 col-lg-6 col-xl-4">
                     <label for="password">Mot de Passe :</label>
                     <input type="password" class="form-control text-center" id="password" Name="password" required v-model="password">
-                    <div class="verif-input verif-input-last-name"></div>
+                    <!-- <div class="verif-input verif-input-last-name">ATTENTION : Mot de passe incorrect.</div> -->
                 </div>
             </div>
             <button type="submit" id="sendForm" class="btn m-auto col-10 col-md-6 col-lg-4 col-xl-3" @click="sendLogin">Se
@@ -37,7 +37,7 @@ export default {
     return {
       monToken: null,
       password: '',
-      email: ''
+      email: '',
     }
   },
   methods: {
@@ -57,3 +57,7 @@ export default {
   }
 }
 </script>
+
+<style lang="sass">
+
+</style>

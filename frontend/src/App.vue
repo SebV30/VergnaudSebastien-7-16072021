@@ -2,7 +2,7 @@
   <div>
     <div class="text-center mt-3 mb-5 m-auto">
         <h1 class="text-center">Bienvenue sur notre Réseau Social d'Entreprise</h1>
-        <img src="./assets/logo-1.png" alt="Logo GROUPOMANIA" title="Logo GROUPOMANIA" aria-label="Logo GROUPOMANIA" />
+        <img class="m-2" src="./assets/logo-1.png" alt="Logo GROUPOMANIA" title="Logo GROUPOMANIA" aria-label="Logo GROUPOMANIA" />
     </div>
 
     <router-view/>

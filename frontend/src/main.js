@@ -4,7 +4,6 @@ import router from './router'
 import moment from 'moment';
 import Vuelidate from 'vuelidate';
 
-
 Vue.use(Vuelidate)
 
 Vue.filter('formatDate', function(value) {

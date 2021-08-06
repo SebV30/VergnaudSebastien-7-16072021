@@ -31,8 +31,8 @@
                     <div class="verif-input verif-input-first-name valid-feedback" style="color:green">Votre mot de passe est correctement renseigné.</div>
                     <div class="verif-input verif-input-first-name invalid-feedback" style="color:red">
                       <span v-if="!$v.password.required">Un mot de passe est requis</span>
-                      <span v-if="!$v.password.minLength">Le mot de passe doit être composé, au moins, {{ $v.password.$params.minLength.min }} caractères (seul caractère spécial utilisable : "-")</span>
-                      <span v-if="!$v.password.maxLength">Le mot de passe peut être composé, au maximum, {{ $v.password.$params.maxLength.max }} caractères</span>
+                      <span v-if="!$v.password.minLength">Il faut au moins {{ $v.password.$params.minLength.min }} caractères (seul caractère spécial utilisable : "-")</span>
+                      <span v-if="!$v.password.maxLength">Il faut au maximum {{ $v.password.$params.maxLength.max }} caractères</span>
                     </div>
                 </div>
             </div>

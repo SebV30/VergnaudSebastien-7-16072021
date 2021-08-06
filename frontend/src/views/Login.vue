@@ -1,7 +1,7 @@
 <template>
       <section class=" text-center">
-        <article>
             <h2>Connectez vous.</h2>
+        <article>
             <div class="d-flex justify-content-center">
                 <div class="form-group col-11 col-md-8 col-lg-6 col-xl-4">
                     <label for="inputEmail4">Email :</label>
@@ -19,17 +19,17 @@
                     <div class="verif-input verif-input-first-name valid-feedback" style="color:green">Votre mot de passe est correctement renseigné.</div>
                     <div class="verif-input verif-input-first-name invalid-feedback" style="color:red">
                       <span v-if="!$v.password.required">Un mot de passe est requis</span>
-                      <span v-if="!$v.password.minLength">Le mot de passe doit être composé, au moins, {{ $v.password.$params.minLength.min }} caractères (seul caractère spécial utilisable : "-")</span>
-                      <span v-if="!$v.password.maxLength">Le mot de passe peut être composé, au maximum, {{ $v.password.$params.maxLength.max }} caractères</span>
+                      <span v-if="!$v.password.minLength">Il faut au moins {{ $v.password.$params.minLength.min }} caractères (seul caractère spécial utilisable : "-")</span>
+                      <span v-if="!$v.password.maxLength">Il faut au maximum {{ $v.password.$params.maxLength.max }} caractères</span>
                     </div>
                 </div>
             </div>
-            <button type="submit" id="sendForm" class="btn m-auto col-10 col-md-6 col-lg-4 col-xl-3" @click="sendLogin">Se
+            <button type="submit" id="sendForm" class="btn mb-4 mr-auto ml-auto col-10 col-md-6 col-lg-4 col-xl-3" @click="sendLogin">Se
                 connecter</button>
         </article>
-        <article>
             <h2>Veuillez vous inscrire si ce n'est pas déjà fait.</h2>
-            <router-link to="/signup" id="sendForm" class="btn m-auto col-10 col-md-6 col-lg-4 col-xl-3">S'Inscrire</router-link>
+        <article>
+            <router-link to="/signup" id="sendForm" class="btn m-auto mb-md-5 col-10 col-md-6 col-lg-4 col-xl-3">S'Inscrire</router-link>
         </article>
     </section>
 

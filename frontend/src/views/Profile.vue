@@ -13,10 +13,10 @@
                 <label for="password">Mot de Passe :</label>
                 <input type="password" class="form-control text-center mb-3" id="password" Name="password" required v-model="password"> <!--v-model="password"-->
                 <div class="verif-input verif-input-last-name"></div>
-                <button type="submit" id="sendForm" class="btn m-auto col-10 col-md-8 col-lg-6 col-xl-4" @click="resetUserEntries">Modifier vos données</button> <!--@click="resetUserEntries"-->
+                <button type="submit" id="sendForm" class="btn m-auto col-10 col-md-8 col-lg-6 col-xl-6" @click="resetUserEntries">Modifier vos données</button> <!--@click="resetUserEntries"-->
             </div>
         </div>
-        <button type="submit" id="sendForm" class="btn m-auto col-10 col-md-8 col-lg-6 col-xl-4" @click="deleteAccount">Supprimer votre compte</button> <!--@click="deleteAccount"-->
+        <button type="submit" id="sendForm" class="btn m-auto col-10 col-md-6 col-lg-4 col-xl-2" @click="deleteAccount">Supprimer votre compte</button> <!--@click="deleteAccount"-->
     </section>
 </div>
 </template>

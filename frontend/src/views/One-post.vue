@@ -2,59 +2,60 @@
 <div>
   <Header />
     <main class=" text-center">
-        <!--Récupération du post sélectionné dans all-posts.html-->
-        <section>
-            <div class="posts">
-                <h2>{{ postTitle }}</h2>
-                <div class="post-field">
-                    <p>{{ postContent }}</p>
-                    <img :src="postImage" :alt="postImage" v-if="postImage !=0" />
-                </div>
-                <div class="post-infos">
-                    <p>De : {{ postUsername }}</p>
-                    <p>Le : {{ postCreatedAt | formatDate }}</p>
-                </div>
-                <button v-if="UserId == postUserId || isAdmin == 1" class="btn btn-del mb-3 mt-3 mr-4" type="submit" @click="showForm">Modifier</button>
-                <div class="text-center" v-if="loadForm">
+      <!--Récupération du post sélectionné dans all-posts.html-->
+      <section>
+          <div class="posts">
+            <article>
+              <h2>{{ postTitle }}</h2>
+              <div class="post-field">
+                  <p>{{ postContent }}</p>
+                  <img :src="postImage" :alt="postImage" v-if="postImage !=0" />
+              </div>
+              <div class="post-infos">
+                  <p>De : <span>{{ postUsername }}</span></p>
+                  <p>Le : {{ postCreatedAt | formatDate }}</p>
+              </div>
+              <button v-if="UserId == postUserId || isAdmin == 1" class="btn btn-del mb-5 mt-3 mr-4" type="submit" @click="showForm">Modifier</button>
+              <div class="text-center" v-if="loadForm">
                   <div class="form-group col-11 m-auto font-weight-bold">
                       <label for="titre">Titre du POST :</label>
                       <input type="text" class="form-control" id="titre" Name="titre" v-model="title">
                   </div>
                   <div class="form-group col-11 m-auto font-weight-bold">
-                    <label for="message">Message :</label>
-                    <textarea class="form-control" id="message" rows="4" Name="message" v-model="content"></textarea>
+                  <label for="message">Message :</label>
+                  <textarea class="form-control" id="message" rows="4" Name="message" v-model="content"></textarea>
                   </div>
                   <br class="form-group m-auto">
                   <input id="image" type="file" class="mt-4 mb-3 mr-3 col-12 col-md-6 justify-content-center" v-on:change="selectedFile" ref="file">
                   <!-- <button class="btn m-auto">Ajouter une image</button><br> -->
-                <button class="btn btn-del mb-3" type="submit" @click="updatePost()">ENVOYER</button>
-                </div>
+              <button class="btn btn-del mb-3" type="submit" @click="updatePost()">ENVOYER</button>
+              </div>
 
-                <button v-if="UserId == postUserId || isAdmin == 1" class="btn btn-del mb-3 mt-3 ml-4" type="submit" @click="deletePost()">Supprimer</button><br>
-                <!-- CREATION INPUT & BOUTON DONNANT POSSIBILITÉ DE CRÉER UN COMMENTAIRE -->
-                <button type="submit" id="sendForm" class="btn m-auto col-9 col-md-6 col-lg-4 col-xl-3" @click="showFormComment">Donnez votre avis</button>
-                <div class="form-group col-11 m-auto font-weight-bold" v-if="loadFormComment">
-                <label for="message"></label>
-                <textarea class="form-control" id="message" rows="4" Name="message" v-model="contentComment"></textarea>
-                <button class="btn btn-del mb-3 mt-3" type="submit" @click="sendComment()">ENVOYER</button>
-
-                </div>
-                <!--CRÉATION/INSERTION COMMENTAIRES SUR CE POST-->
-                <article >
-                  <div class="posts">
-                    <h2>commentaires</h2>
-                    <div class="comments commentId" v-for="(comment,receiveDb) in Comments" :key="receiveDb" :id="comment.id">
-                        <div class="post-field">
-                            <p>{{ comment.content }}</p>
-                        </div>
-                        <div class="post-infos">
-                            <p>De : {{ comment.User.username }}</p>
-                            <p>Le : {{ comment.createdAt | formatDate }}</p>
-                        </div>
-                    <button v-if="UserId == comment.UserId || isAdmin == 1" class="btn btn-del mb-3 mt-3" type="submit" @click="deleteComment()">Supprimer</button>
-                    </div>
+              <button v-if="UserId == postUserId || isAdmin == 1" class="btn btn-del mb-5 mt-3 ml-4" type="submit" @click="deletePost()">Supprimer</button><br>
+              <!-- CREATION INPUT & BOUTON DONNANT POSSIBILITÉ DE CRÉER UN COMMENTAIRE -->
+              <button type="submit" id="sendForm" class="btn m-auto mb-5 col-9 col-md-6 col-lg-4 col-xl-3" @click="showFormComment">Donnez votre avis</button>
+              <div class="form-group col-11 m-auto font-weight-bold" v-if="loadFormComment">
+              <label for="message"></label>
+              <textarea class="form-control" id="message" rows="4" Name="message" v-model="contentComment"></textarea>
+              <button class="btn btn-del mb-3 mt-3" type="submit" @click="sendComment()">ENVOYER</button>
+              </div>
+</article>
+              <!--CRÉATION/INSERTION COMMENTAIRES SUR CE POST-->
+              <article >
+                  <div >
+                  <h2>COMMENTAIRES</h2>
+                  <div class="comments commentId" v-for="(comment,receiveDb) in Comments" :key="receiveDb" :id="comment.id">
+                      <div class="post-field">
+                          <p>{{ comment.content }}</p>
+                      </div>
+                      <div class="post-infos">
+                          <p>De : <span>{{ comment.User.username }}</span></p>
+                          <p>Le : {{ comment.createdAt | formatDate }}</p>
+                      </div>
+                  <button v-if="UserId == comment.UserId || isAdmin == 1" class="btn btn-del mb-3 mt-3" type="submit" @click="deleteComment()">Supprimer</button>
                   </div>
-                </article>
+                  </div>
+              </article>
             </div>
         </section>
 
@@ -167,7 +168,7 @@ export default {
       })
       .then(response => { 
         if(response) {
-        this.$router.push("/");
+        this.$router.push("/posts");
         }
       })
       .catch((error) => {console.log(error);})
@@ -240,10 +241,6 @@ export default {
     }
   }
 };
-
-
-      // const isAdmin = VueJwtDecode.decode(localStorage.getItem('token')).isAdmin;
-      // console.log(isAdmin);
 
 </script>
 

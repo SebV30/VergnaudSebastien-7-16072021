@@ -1,0 +1,13 @@
+header {
+    background-color: $color-secondary;
+    & nav {
+        border-top: 2px solid $color-border;
+        border-bottom: 2px solid $color-border;
+        background-color: $color-secondary;
+        margin-bottom: 10px;
+        & a:hover {
+            color: $primary-font-color!important;
+            font-weight: bold;
+        }
+    }
+}

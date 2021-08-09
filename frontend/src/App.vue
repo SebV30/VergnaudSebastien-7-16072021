@@ -34,8 +34,6 @@
             <p id="copyright" class="text-center mt-4">© GROUPOMANIA 2021</p>
         </div>
     </footer>
-
-
   </div>
 </template>
 

@@ -5,10 +5,6 @@ const jwt = require('jsonwebtoken');
 
 // CREATION D'UN POST 
 exports.createPost = (req, res, next) => {
-    // const token = req.headers.authorization.split(' ')[1];
-    // const decodedToken = jwt.verify(token, process.env.TOKEN);
-    // const userId = decodedToken.userId;
-
     models.Post.create({
             title: req.body.title,
             content: req.body.content,

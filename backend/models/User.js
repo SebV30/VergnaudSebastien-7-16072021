@@ -1,6 +1,6 @@
-//ATTENTION FAIRE "{Sequelize, DataTypes}" SI ON UTILISE SEQUELIZE DANS LE MODEL (EX: Sequelize.NOW => horodatage)
+//ATTENTION FAIRE "{Sequelize, DataTypes}" SI ON UTILISE SEQUELIZE DANS LE MODEL
+//(EX: Sequelize.NOW => horodatage)
 const { DataTypes } = require('sequelize');
-
 
 // Définition de la table "User" et ses colonnes
 function User(connectionSequelize) {

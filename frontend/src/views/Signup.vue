@@ -37,14 +37,13 @@
                 </div>
             </div>
             <button type="submit" id="sendForm" class="btn m-auto col-10 col-md-8 col-lg-6 col-xl-4" @click='registerSignup'>S'Inscrire</button>
-            <!-- <a href="../HTML/index.html" class="btn m-auto col-11 col-md-8 col-lg-6 col-xl-4">S'Inscrire</a> -->
         </article>
     </section>
 
 </template>
 
 <script>
-import {required, minLength, maxLength, email , helpers} from 'vuelidate/lib/validators' // , helpers
+import {required, minLength, maxLength, email , helpers} from 'vuelidate/lib/validators'
 import axios from 'axios'
 
 const usernameValidator = helpers.regex('regUsername', /^[A-Za-z0-9-]{3,12}$/)

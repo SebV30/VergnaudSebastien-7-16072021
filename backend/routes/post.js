@@ -6,12 +6,19 @@ const commentCtrl = require('../controllers/comment');
 const auth = require('../middleware/auth');
 const multer = require('../middleware/multer-config');
 
-router.post('/', auth, multer, postCtrl.createPost); //Création post
-router.put('/:id', auth, multer, postCtrl.updatePost); //Modification post
-router.delete('/:id', auth, postCtrl.deletePost); //Suppression post
-router.get('/', auth, postCtrl.getAllPost); //Accès à tous les posts
-router.get('/:id', auth, postCtrl.getOnePost); //Accès à un post précis
-router.get('/:id/comment', auth, commentCtrl.getAllCommentFromOnePost); //Accès à tous les commentaires d'1 post précis
-router.post('/:id/comment', auth, commentCtrl.createComment); //Créer un commentaire à partir d'un Id Post
+//Création post
+router.post('/', auth, multer, postCtrl.createPost);
+//Modification post
+router.put('/:id', auth, multer, postCtrl.updatePost);
+//Suppression post
+router.delete('/:id', auth, postCtrl.deletePost);
+//Accès à tous les posts
+router.get('/', auth, postCtrl.getAllPost);
+//Accès à un post précis
+router.get('/:id', auth, postCtrl.getOnePost);
+//Accès à tous les commentaires d'1 post précis
+router.get('/:id/comment', auth, commentCtrl.getAllCommentFromOnePost);
+//Créer un commentaire à partir d'un Id Post
+router.post('/:id/comment', auth, commentCtrl.createComment);
 
 module.exports = router;

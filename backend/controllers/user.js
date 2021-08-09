@@ -60,7 +60,6 @@ exports.updateUser = (req, res, next) => {
     bcrypt.hash(req.body.password, 10)
         .then(hash => {
             models.User.update({
-                    // email: req.body.email,
                     username: req.body.username,
                     password: hash,
                 }, { where: { id: req.params.id } })

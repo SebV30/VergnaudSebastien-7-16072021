@@ -4,18 +4,18 @@
         <section class=" text-center">
         <div class="createPost d-flex-column justify-content-around">
             <button type="submit" class="btn btn-del m-auto col-10 col-md-4 col-lg-4 col-xl-3" @click="showForm">Créez un nouveau post</button>
-                <div class="text-center" v-if="loadForm">
-                  <div class="form-group col-11 m-auto font-weight-bold">
-                      <label for="titre">Titre du POST :</label>
-                      <input type="text" class="form-control" id="titre" Name="titre" v-model="title">
-                  </div>
-                  <div class="form-group col-11 m-auto font-weight-bold">
-                    <label for="message">Message :</label>
-                    <textarea class="form-control" id="message" rows="4" Name="message" v-model="content"></textarea>
-                  </div>
-                  <input id="image" type="file" class="mt-4 mb-3 mr-3 col-12 col-md-6 justify-content-center" v-on:change="selectedFile" ref="file">
-                <button class="btn btn-del mb-3" type="submit" @click="sendPost">ENVOYER</button>
-                </div>
+            <div class="text-center" v-if="loadForm">
+              <div class="form-group col-11 m-auto font-weight-bold">
+                  <label for="titre">Titre du POST :</label>
+                  <input type="text" class="form-control" id="titre" Name="titre" v-model="title">
+              </div>
+              <div class="form-group col-11 m-auto font-weight-bold">
+                <label for="message">Message :</label>
+                <textarea class="form-control" id="message" rows="4" Name="message" v-model="content"></textarea>
+              </div>
+              <input id="image" type="file" class="mt-4 mb-3 mr-3 col-12 col-md-6 justify-content-center" v-on:change="selectedFile" ref="file">
+            <button class="btn btn-del mb-3" type="submit" @click="sendPost">ENVOYER</button>
+            </div>
         </div>
 
         <article>

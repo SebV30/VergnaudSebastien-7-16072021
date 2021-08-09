@@ -32,12 +32,10 @@
             <router-link to="/signup" id="sendForm" class="btn m-auto mb-md-5 col-10 col-md-6 col-lg-4 col-xl-3">S'Inscrire</router-link>
         </article>
     </section>
-
-
 </template>
 
 <script>
-import {required, minLength, maxLength, email , helpers} from 'vuelidate/lib/validators' // , helpers
+import {required, minLength, maxLength, email , helpers} from 'vuelidate/lib/validators'
 import axios from 'axios';
 
 const usernameValidator = helpers.regex('regUsername', /^[A-Za-z0-9-]{3,12}$/)

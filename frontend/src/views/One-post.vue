@@ -39,9 +39,9 @@
               <textarea class="form-control" id="message" rows="4" Name="message" v-model="contentComment"></textarea>
               <button class="btn btn-del mb-3 mt-3" type="submit" @click="sendComment()">ENVOYER</button>
               </div>
-</article>
+            </article>
               <!--CRÉATION/INSERTION COMMENTAIRES SUR CE POST-->
-              <article >
+            <article >
                   <div >
                   <h2>COMMENTAIRES</h2>
                   <div class="comments commentId" v-for="(comment,receiveDb) in Comments" :key="receiveDb" :id="comment.id">
@@ -55,9 +55,9 @@
                   <button v-if="UserId == comment.UserId || isAdmin == 1" class="btn btn-del mb-3 mt-3" type="submit" @click="deleteComment()">Supprimer</button>
                   </div>
                   </div>
-              </article>
-            </div>
-        </section>
+            </article>
+          </div>
+      </section>
 
     </main>
     </div>
@@ -235,7 +235,6 @@ export default {
       })
       .then(response => {
         this.Comments = response.data;
-        console.log(response);
       })
       .catch((error) => {console.log(error);});
     }

@@ -1,15 +1,50 @@
 {
-    "dependencies": {
-        "sass": "^1.35.2"
+  "name": "frontend",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint",
+    "sass": "sass ./src/sass/main.scss:./public/css/style.css",
+    "sass:watch": "sass --watch ./src/sass/main.scss:./public/css/style.css"
+  },
+  "dependencies": {
+    "axios": "^0.21.1",
+    "core-js": "^3.6.5",
+    "moment": "^2.29.1",
+    "vue": "^2.6.11",
+    "vue-jwt-decode": "^0.1.0",
+    "vue-router": "^3.5.2",
+    "vuelidate": "^0.7.6"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-plugin-eslint": "~4.5.0",
+    "@vue/cli-plugin-router": "~4.5.0",
+    "@vue/cli-service": "~4.5.0",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^6.7.2",
+    "eslint-plugin-vue": "^6.2.2",
+    "vue-template-compiler": "^2.6.11"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
     },
-    "name": "frontend",
-    "version": "1.0.0",
-    "main": "index.js",
-    "devDependencies": {},
-    "scripts": {
-        "sass": "sass --watch ./sass/main.scss:./public/css/style.css"
+    "extends": [
+      "plugin:vue/essential",
+      "eslint:recommended"
+    ],
+    "parserOptions": {
+      "parser": "babel-eslint"
     },
-    "author": "VERGNAUD",
-    "license": "ISC",
-    "description": ""
+    "rules": {}
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
 }

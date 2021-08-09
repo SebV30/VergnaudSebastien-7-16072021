@@ -1,0 +1,128 @@
+h1 {
+    font-size: 17px!important;
+    margin: 0;
+    padding: 20px;
+    color: $secondary-font-color;
+    background-color: $footer;
+    @include tablette {
+        font-size: 26px!important;
+    }
+    @include pc {
+        font-size: 32px!important;
+    }
+    @include pc-xl {
+        font-size: 38px!important;
+    }
+}
+
+section {
+    & article {
+        & h2 {
+            font-size: 25px;
+            font-weight: bold;
+            font-style: italic;
+            margin: 20px 1%;
+            padding-bottom: 20px;
+        }
+        & .posts {
+            width: 90%;
+            border: 2px solid $color-primary;
+            border-radius: 20px;
+            margin: 15px auto;
+            @include pc-xl {
+                width: 75%;
+            }
+            & h2 {
+                padding-bottom: 15px;
+                border-bottom: 1px solid $color-primary;
+            }
+            & .post-field {
+                margin: 16px 2% 0 2%;
+            }
+        }
+        & .comments {
+            width: 95%;
+            border: 2px solid $primary-font-color;
+            border-radius: 20px;
+            margin: 15px auto;
+        }
+        & .comment-option {
+            display: flex;
+            justify-content: space-around;
+        }
+        & .bye {
+            margin-top: 45px;
+            font-size: 25px;
+        }
+    }
+    & .btn {
+        background-color: $color-primary;
+        color: $secondary-font-color;
+        margin-top: 30px;
+    }
+    & .btn:hover {
+        color: $secondary-font-color!important;
+        transform: scale(1.05);
+    }
+    & .btn-del {
+        // font-size: 22px;
+        margin-top: 30px;
+    }
+}
+
+h2 {
+    font-size: 18px!important;
+    font-weight: bold;
+    font-style: italic;
+    margin: 20px 1%;
+    padding-bottom: 20px;
+}
+
+img {
+    max-width: 95%;
+    object-fit: cover;
+    margin-bottom: 15px;
+}
+
+.posts {
+    width: 90%;
+    border: 2px solid $color-primary;
+    border-radius: 20px;
+    margin: 15px auto;
+    & h2 {
+        border-bottom: 1px solid $primary-font-color;
+    }
+    & .post-infos {
+        border-top: 1px solid $primary-font-color;
+    }
+}
+
+.post-infos {
+    margin: 0 5%;
+    padding-top: 15px;
+    border-top: 1px solid $color-primary;
+    @include tablette {
+        display: flex;
+        justify-content: space-between;
+    }
+    @include pc {
+        display: flex;
+        justify-content: space-between;
+    }
+    @include pc-xl {
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+span {
+    color: $primary-font-color;
+    font-weight: bold;
+    font-size: 125%;
+}
+
+.btn-del {
+    background-color: $color-primary;
+    color: $secondary-font-color;
+    margin-top: 30px;
+}

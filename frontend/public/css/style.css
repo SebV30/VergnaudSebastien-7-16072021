@@ -1,7 +1,6 @@
 /*  MEDIA QUERIES  */
 .body {
   background-color: whitesmoke;
-  width: 97%;
   font-family: "Roboto";
   margin: auto;
   text-align: center;
@@ -10,68 +9,196 @@
 header {
   background-color: whitesmoke;
 }
-header h1 {
-  font-size: 23px;
-  margin: 0;
-  padding: 20px;
-  color: #fd2d01;
-}
-@media (min-width: 768px) and (max-width: 1024px) {
-  header h1 {
-    font-size: 26px;
-  }
-}
-@media (min-width: 1025px) and (max-width: 1440px) {
-  header h1 {
-    font-size: 32px;
-  }
-}
-@media (min-width: 1441px) and (max-width: 1920px) {
-  header h1 {
-    font-size: 36px;
-  }
-}
 header nav {
   border-top: 2px solid #dfdfdf;
   border-bottom: 2px solid #dfdfdf;
   background-color: whitesmoke;
   margin-bottom: 10px;
 }
+header nav a:hover {
+  color: #fd2d01 !important;
+  font-weight: bold;
+}
+
+h1 {
+  font-size: 17px !important;
+  margin: 0;
+  padding: 20px;
+  color: #ffffff;
+  background-color: #931901;
+}
+@media (min-width: 768px) and (max-width: 1023px) {
+  h1 {
+    font-size: 26px !important;
+  }
+}
+@media (min-width: 1024px) and (max-width: 1439px) {
+  h1 {
+    font-size: 32px !important;
+  }
+}
+@media (min-width: 1440px) and (max-width: 1920px) {
+  h1 {
+    font-size: 38px !important;
+  }
+}
 
 section article h2 {
-  font-size: 16px;
+  font-size: 25px;
   font-weight: bold;
   font-style: italic;
   margin: 20px 1%;
+  padding-bottom: 20px;
 }
-section article .btn {
+section article .posts {
+  width: 90%;
+  border: 2px solid #c30000;
+  border-radius: 20px;
+  margin: 15px auto;
+}
+@media (min-width: 1440px) and (max-width: 1920px) {
+  section article .posts {
+    width: 75%;
+  }
+}
+section article .posts h2 {
+  padding-bottom: 15px;
+  border-bottom: 1px solid #c30000;
+}
+section article .posts .post-field {
+  margin: 16px 2% 0 2%;
+}
+section article .comments {
+  width: 95%;
+  border: 2px solid #fd2d01;
+  border-radius: 20px;
+  margin: 15px auto;
+}
+section article .comment-option {
+  display: flex;
+  justify-content: space-around;
+}
+section article .bye {
+  margin-top: 45px;
+  font-size: 25px;
+}
+section .btn {
   background-color: #c30000;
   color: #ffffff;
+  margin-top: 30px;
+}
+section .btn:hover {
+  color: #ffffff !important;
+  transform: scale(1.05);
+}
+section .btn-del {
+  margin-top: 30px;
+}
+
+h2 {
+  font-size: 18px !important;
+  font-weight: bold;
+  font-style: italic;
+  margin: 20px 1%;
+  padding-bottom: 20px;
+}
+
+img {
+  max-width: 95%;
+  object-fit: cover;
+  margin-bottom: 15px;
+}
+
+.posts {
+  width: 90%;
+  border: 2px solid #c30000;
+  border-radius: 20px;
+  margin: 15px auto;
+}
+.posts h2 {
+  border-bottom: 1px solid #fd2d01;
+}
+.posts .post-infos {
+  border-top: 1px solid #fd2d01;
+}
+
+.post-infos {
+  margin: 0 5%;
+  padding-top: 15px;
+  border-top: 1px solid #c30000;
+}
+@media (min-width: 768px) and (max-width: 1023px) {
+  .post-infos {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+@media (min-width: 1024px) and (max-width: 1439px) {
+  .post-infos {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+@media (min-width: 1440px) and (max-width: 1920px) {
+  .post-infos {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+span {
+  color: #fd2d01;
+  font-weight: bold;
+  font-size: 125%;
+}
+
+.btn-del {
+  background-color: #c30000;
+  color: #ffffff;
+  margin-top: 30px;
 }
 
 footer {
   margin: 30px 0 0 0;
-  border: 2px solid #fd2d01;
-  background-color: #fd2d01;
+  background-color: #931901;
   color: #ffffff;
 }
-footer a {
-  text-align: center;
-  color: black;
+@media (min-width: 768px) and (max-width: 1023px) {
+  footer {
+    margin: 50px 0 0 0;
+  }
 }
-@media (min-width: 1025px) and (max-width: 1440px) {
+@media (min-width: 1024px) and (max-width: 1439px) {
+  footer {
+    margin: 50px 0 0 0;
+  }
+}
+@media (min-width: 1440px) and (max-width: 1920px) {
+  footer {
+    margin: 145px 0 0 0;
+  }
+}
+footer a {
+  margin: 5px 0;
+  text-align: center;
+  color: #ffffff;
+}
+@media (min-width: 1024px) and (max-width: 1439px) {
   footer a {
     font-size: 115%;
   }
 }
-@media (min-width: 1441px) and (max-width: 1920px) {
+@media (min-width: 1440px) and (max-width: 1920px) {
   footer a {
     font-size: 125%;
   }
 }
 footer #copyright {
   font-size: 1.2rem;
-  color: black;
+  color: #ffffff;
+}
+footer .container {
+  padding: 35px;
 }
 
 /*# sourceMappingURL=style.css.map */

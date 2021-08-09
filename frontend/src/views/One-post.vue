@@ -205,10 +205,6 @@ export default {
       const infoCommentId = document.querySelector('.commentId');
       const commentId = infoCommentId.getAttribute('id');
 
-      // const UserId = VueJwtDecode.decode(localStorage.getItem('token')).userId;
-      // const isAdmin = VueJwtDecode.decode(localStorage.getItem('token')).isAdmin;
-
-      // if(userId == UserId || isAdmin === 1) {
       axios
       .delete('http://localhost:3000/api/comment/' + commentId ,{
         headers: {

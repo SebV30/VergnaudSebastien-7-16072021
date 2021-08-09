@@ -109,7 +109,7 @@ export default {
       })
       .then(() => {
         localStorage.clear();
-        this.$router.push('./Login.vue')
+        this.$router.push("../Login")
       })
       .catch((error) => {console.log(error);});
       
